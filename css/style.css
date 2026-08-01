@@ -1,0 +1,32 @@
+/* Pilot Zaufania — Custom Styles (extends Tailwind CDN) */
+
+::-webkit-scrollbar { width: 4px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: #d1d5db; border-radius: 2px; }
+html { scroll-behavior: smooth; }
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus {
+  -webkit-box-shadow: 0 0 0 30px #f9fafb inset !important;
+  -webkit-text-fill-color: #374151 !important;
+}
+:focus-visible { outline: 2px solid #6366f1; outline-offset: 2px; }
+::selection { background: #c7d2fe; color: #3730a3; }
+
+.ride-card {
+  transition: border-color .15s, background-color .15s, transform .15s, box-shadow .15s;
+}
+.event-row { animation: fadeIn .3s ease-out; }
+.btn-primary:active, .btn-accent:active { transform: scale(.98); }
+
+@media (max-width: 480px) {
+  .app-container { border-radius: 0; }
+  body { padding: 0; }
+}
+
+@media print {
+  header, nav, .btn-primary, .btn-accent, .btn-outline, .btn-ghost, #toast { display: none !important; }
+  body { background: #fff; }
+  .app-container { max-width: 100%; box-shadow: none; }
+  .card { box-shadow: none; border: 1px solid #e5e7eb; }
+}

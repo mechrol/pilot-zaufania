@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pilot Zaufania</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="css/style.css" rel="stylesheet">
+<style>
+  body { font-family: 'Inter', sans-serif; background: #f0f2f5; }
+  .app-container { max-width: 480px; min-height: 100vh; margin: 0 auto; }
+  .card { background: #fff; border-radius: 16px; box-shadow: 0 1px 3px rgba(0,0,0,.08); }
+  .btn-primary { background: linear-gradient(135deg, #6366f1, #4f46e5); color: #fff; font-weight: 600; border-radius: 12px; padding: 14px 24px; transition: all .2s; }
+  .btn-primary:hover { transform: translateY(-1px); box-shadow: 0 4px 12px rgba(99,102,241,.35); }
+  .btn-primary:disabled { opacity: .5; transform: none; box-shadow: none; }
+  .btn-accent { background: linear-gradient(135deg, #f59e0b, #d97706); color: #fff; font-weight: 600; border-radius: 12px; padding: 14px 24px; transition: all .2s; }
+  .btn-accent:hover { transform: translateY(-1px); box-shadow: 0 4px 12px rgba(245,158,11,.4); }
+  .btn-outline { border: 2px solid #e5e7eb; color: #374151; font-weight: 600; border-radius: 12px; padding: 12px 20px; transition: all .2s; }
+  .btn-outline:hover { border-color: #6366f1; color: #6366f1; }
+  .btn-ghost { color: #6366f1; font-weight: 600; padding: 8px 16px; border-radius: 8px; transition: all .2s; }
+  .btn-ghost:hover { background: #eef2ff; }
+  .badge { display: inline-flex; align-items: center; gap: 4px; padding: 4px 10px; border-radius: 20px; font-size: 12px; font-weight: 600; }
+  .badge-green { background: #dcfce7; color: #166534; }
+  .badge-yellow { background: #fef3c7; color: #92400e; }
+  .badge-red { background: #fee2e2; color: #991b1b; }
+  .badge-blue { background: #dbeafe; color: #1e40af; }
+  .badge-purple { background: #ede9fe; color: #5b21b6; }
+  .badge-gray { background: #f3f4f6; color: #4b5563; }
+  .input-field { width: 100%; background: #f9fafb; border: 2px solid #e5e7eb; border-radius: 12px; padding: 14px 16px; font-size: 15px; outline: none; transition: border-color .2s; }
+  .input-field:focus { border-color: #6366f1; background: #fff; }
+  .ride-card { border: 2px solid #e5e7eb; border-radius: 16px; padding: 16px; cursor: pointer; transition: all .2s; }
+  .ride-card:hover { border-color: #a5b4fc; }
+  .ride-card.selected { border-color: #6366f1; background: #eef2ff; box-shadow: 0 4px 16px rgba(99,102,241,.15); transform: scale(1.01); }
+  .event-row { display: flex; align-items: flex-start; gap: 12px; padding: 12px 0; border-bottom: 1px solid #f3f4f6; }
+  .event-dot { width: 10px; height: 10px; border-radius: 50%; margin-top: 6px; flex-shrink: 0; }
+  .event-dot.start { background: #22c55e; }
+  .event-dot.update { background: #6366f1; }
+  .event-dot.stop { background: #f59e0b; }
+  .event-dot.end { background: #ef4444; }
+  .timeline-line { position: relative; }
+  .timeline-line::before { content: ''; position: absolute; left: 4px; top: 22px; bottom: 6px; width: 2px; background: #e5e7eb; }
+  .slide-up { animation: slideUp .3s ease-out; }
+  @keyframes slideUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+  .fade-in { animation: fadeIn .3s ease-out; }
+  @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+  .pulse { animation: pulse 2s infinite; }
+  @keyframes pulse { 0%,100% { opacity: 1; } 50% { opacity: .5; } }
+  .nav-tab { padding: 8px 16px; border-radius: 8px; font-size: 13px; font-weight: 600; cursor: pointer; transition: all .2s; color: #6b7280; }
+  .nav-tab.active { background: #eef2ff; color: #4f46e5; }
+  .nav-tab:hover:not(.active) { background: #f3f4f6; }
+  .toast { position: fixed; bottom: 24px; left: 50%; transform: translateX(-50%); background: #1f2937; color: #fff; padding: 12px 24px; border-radius: 12px; font-size: 14px; font-weight: 500; z-index: 9999; animation: slideUp .3s ease-out; }
+  .progress-bar { height: 4px; background: #e5e7eb; border-radius: 2px; overflow: hidden; }
+  .progress-bar-fill { height: 100%; background: linear-gradient(90deg, #6366f1, #8b5cf6); border-radius: 2px; transition: width .3s; }
+</style>
+</head>
+<body class="flex justify-center items-start p-0 sm:p-4">
+  <div id="app" class="app-container w-full bg-white shadow-xl overflow-hidden relative">
+
+    <!-- HEADER -->
+    <header class="bg-gradient-to-r from-indigo-600 to-purple-600 text-white p-5 shadow-md sticky top-0 z-30">
+      <div class="flex items-center justify-between">
+        <div class="flex items-center gap-3">
+          <div class="w-10 h-10 bg-white/20 rounded-xl flex items-center justify-center text-xl">🧭</div>
+          <div>
+            <h1 class="text-xl font-bold tracking-tight">Pilot Zaufania</h1>
+            <p class="text-xs text-indigo-200">Bezpieczna podróż. Pełna przejrzystość.</p>
+          </div>
+        </div>
+        <button onclick="openModule('diary')" class="w-10 h-10 bg-white/15 hover:bg-white/25 rounded-xl flex items-center justify-center text-lg transition" title="Dzienniczek Zwierciadło">🪞</button>
+      </div>
+      <!-- Navigation tabs -->
+      <nav id="mainNav" class="flex gap-1 mt-3 overflow-x-auto pb-1">
+        <span class="nav-tab active" data-view="booking" onclick="showView('booking')">🚖 Rezerwacja</span>
+        <span class="nav-tab" data-view="diary" onclick="showView('diary')">🪞 Dzienniczek</span>
+        <span class="nav-tab" data-view="history" onclick="showView('history')">📋 Historia</span>
+      </nav>
+      <!-- Trip status indicator -->
+      <div id="tripStatusBar" class="hidden mt-3 flex items-center gap-2 bg-white/10 rounded-lg px-3 py-2 text-sm">
+        <span class="w-2 h-2 bg-green-400 rounded-full pulse"></span>
+        <span id="tripStatusText">Przejazd w toku — rejestrator aktywny (T1)</span>
+      </div>
+    </header>
+
+    <!-- MAIN CONTENT -->
+    <main class="p-4 pb-24">
+
+      <!-- ===== VIEW: BOOKING ===== -->
+      <section id="view-booking" class="fade-in">
+
+        <!-- Step 1: Location -->
+        <div id="booking-step-location">
+          <div class="card p-5 mb-4">
+            <h2 class="text-lg font-bold text-gray-800 mb-1">Dokąd jedziesz?</h2>
+            <p class="text-sm text-gray-500 mb-4">Podaj miejsce odbioru i cel podróży</p>
+            <div class="space-y-3">
+              <div class="relative">
+                <span class="absolute left-4 top-4 text-green-500 text-sm">📍</span>
+                <input type="text" id="pickupInput" value="Moja aktualna lokalizacja" class="input-field pl-10" placeholder="Miejsce odbioru">
+              </div>
+              <div class="relative">
+                <span class="absolute left-4 top-4 text-red-500 text-sm">🎯</span>
+                <input type="text" id="dropoffInput" value="Centrum Handlowe Central Mall" class="input-field pl-10" placeholder="Cel podróży">
+              </div>
+            </div>
+            <div class="mt-4 p-4 bg-indigo-50 rounded-xl">
+              <div class="flex items-center gap-3">
+                <div class="flex flex-col items-center">
+                  <div class="w-3 h-3 bg-green-500 rounded-full"></div>
+                  <div class="w-0.5 h-10 bg-gray-300 my-1"></div>
+                  <div class="w-3 h-3 bg-red-500 rounded-full"></div>
+                </div>
+                <div class="text-sm">
+                  <p class="font-medium text-gray-700">Odbiór: <span id="visPickup" class="text-gray-500">Moja aktualna lokalizacja</span></p>
+                  <p class="font-medium text-gray-700 mt-2">Cel: <span id="visDropoff" class="text-gray-500">Centrum Handlowe Central Mall</span></p>
+                </div>
+              </div>
+              <p class="text-xs text-gray-500 mt-2">Szacowana odległość: <strong id="estDistance">8.5 km</strong>, <strong id="estTime">~22 min</strong></p>
+            </div>
+            <button onclick="bookingNextStep('ride-select')" class="btn-primary w-full mt-4">Wybierz rodzaj przejazdu →</button>
+          </div>
+        </div>
+
+        <!-- Step 2: Ride type selection -->
+        <div id="booking-step-ride-select" class="hidden">
+          <div class="card p-5 mb-4">
+            <div class="flex items-center gap-2 mb-4">
+              <button onclick="bookingPrevStep('location')" class="btn-ghost text-sm">← Wstecz</button>
+              <h2 class="text-lg font-bold text-gray-800">Wybierz przejazd</h2>
+            </div>
+            <div id="rideOptions" class="space-y-3"></div>
+            <button id="btnConfirmRide" onclick="confirmRide()" class="btn-primary w-full mt-4" disabled>Potwierdź i zamów →</button>
+          </div>
+        </div>
+
+        <!-- Step 3: Driver confirmation -->
+        <div id="booking-step-driver" class="hidden">
+          <div class="card p-5 mb-4 slide-up">
+            <div class="text-center mb-4">
+              <div class="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto text-2xl mb-2">✅</div>
+              <h2 class="text-lg font-bold text-gray-800">Kierowca w drodze!</h2>
+              <p class="text-sm text-gray-500">Przybliżony czas przyjazdu: <strong>4 min</strong></p>
+            </div>
+            <div class="flex items-center gap-4 p-4 bg-gray-50 rounded-xl mb-4">
+              <div class="w-14 h-14 bg-indigo-100 rounded-full flex items-center justify-center text-2xl" id="driverPhoto">👨‍✈️</div>
+              <div class="flex-1">
+                <p class="font-bold text-gray-800" id="driverName">—</p>
+                <p class="text-sm text-gray-500">⭐ <span id="driverRating">—</span> · <span id="driverExp">—</span></p>
+              </div>
+            </div>
+            <div class="p-4 bg-gray-50 rounded-xl text-sm space-y-1">
+              <p><strong>Pojazd:</strong> <span id="vehInfo">—</span></p>
+              <p><strong>Nr rej.:</strong> <span id="vehPlate">—</span></p>
+              <p><strong>Kategoria:</strong> <span id="rideCat">—</span></p>
+              <p class="font-bold text-indigo-600 mt-2">Szac. koszt: <span id="rideFare">—</span> PLN</p>
+              <p class="text-xs text-gray-400">Ride ID: <code id="rideIdDisplay" class="text-indigo-400">—</code></p>
+            </div>
+            <button onclick="startTrip()" class="btn-accent w-full mt-4">Rozpocznij przejazd 🚀</button>
+          </div>
+        </div>
+
+        <!-- Step 4: Trip in progress -->
+        <div id="booking-step-trip" class="hidden">
+          <div class="card p-5 mb-4 slide-up">
+            <div class="text-center mb-4">
+              <div class="w-16 h-16 bg-indigo-100 rounded-full flex items-center justify-center mx-auto text-2xl mb-2 pulse">🚗</div>
+              <h2 class="text-lg font-bold text-gray-800">Przejazd w toku</h2>
+              <p class="text-sm text-gray-500">Rejestrator zdarzeń aktywny</p>
+            </div>
+            <!-- Live event feed -->
+            <div class="bg-gray-50 rounded-xl p-4 mb-4 max-h-48 overflow-y-auto">
+              <h3 class="text-sm font-bold text-gray-600 mb-2">📡 Zdarzenia w czasie rzeczywistym:</h3>
+              <div id="liveEvents" class="text-xs text-gray-500 space-y-1">
+                <p>Oczekiwanie na zdarzenia...</p>
+              </div>
+            </div>
+            <!-- Progress bar -->
+            <div class="mb-2 flex justify-between text-xs text-gray-500">
+              <span>Trasa</span><span id="tripProgressPct">0%</span>
+            </div>
+            <div class="progress-bar mb-4"><div id="tripProgressBar" class="progress-bar-fill" style="width:0%"></div></div>
+            <!-- Alert button -->
+            <div class="flex gap-2">
+              <button onclick="triggerAlertEvent()" class="btn-outline flex-1 text-red-500 border-red-200 hover:bg-red-50 text-sm py-3">🚨 Zgłoś zdarzenie</button>
+              <button onclick="endTrip()" class="btn-primary flex-1 text-sm py-3">Zakończ przejazd 🏁</button>
+            </div>
+          </div>
+        </div>
+
+      </section>
+
+      <!-- ===== VIEW: DIARY ===== -->
+      <section id="view-diary" class="hidden fade-in">
+        <div id="diaryEmpty" class="card p-6 text-center">
+          <div class="text-5xl mb-3">🪞</div>
+          <h2 class="text-lg font-bold text-gray-800 mb-1">Dzienniczek „Zwierciadło"</h2>
+          <p class="text-sm text-gray-500 mb-4">Twoja osobista przestrzeń refleksji po każdym przejeździe. Wpisy są prywatne i widoczne tylko dla Ciebie.</p>
+          <div id="diaryHistory" class="text-left mt-4"></div>
+        </div>
+        <!-- New entry form (shown after ride completion) -->
+        <div id="diaryNewEntry" class="hidden card p-5 mb-4 slide-up">
+          <h2 class="text-lg font-bold text-gray-800 mb-3">✨ Refleksja po przejeździe</h2>
+          <p class="text-sm text-gray-500 mb-4">Wybierz prompt i podziel się swoimi przemyśleniami:</p>
+          <div id="diaryPrompts" class="space-y-2 mb-4"></div>
+          <textarea id="diaryContent" class="input-field h-28 mb-3" placeholder="Twoja refleksja..."></textarea>
+          <button onclick="saveDiaryEntry()" class="btn-primary w-full">Zapisz wpis w Dzienniczku 🪞</button>
+          <button onclick="skipDiary()" class="btn-ghost w-full mt-2 text-sm">Pomiń — przejdź do Smart Kontraktu →</button>
+        </div>
+      </section>
+
+      <!-- ===== VIEW: HISTORY ===== -->
+      <section id="view-history" class="hidden fade-in">
+        <div class="card p-5 mb-4">
+          <h2 class="text-lg font-bold text-gray-800 mb-4">📋 Historia przejazdów</h2>
+          <div id="historyList" class="space-y-3">
+            <p class="text-sm text-gray-400 text-center py-8">Brak zakończonych przejazdów</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===== SMART CONTRACT VIEW (overlay) ===== -->
+      <section id="view-contract" class="hidden fade-in">
+        <div class="card p-5 mb-4">
+          <div class="flex items-center gap-2 mb-4">
+            <span class="text-2xl">📜</span>
+            <div>
+              <h2 class="text-lg font-bold text-gray-800">Smart Kontrakt</h2>
+              <p class="text-xs text-gray-500">Raport zatwierdzający przejazd</p>
+            </div>
+          </div>
+
+          <!-- Section 1: Summary -->
+          <div class="mb-4 p-4 bg-gray-50 rounded-xl">
+            <h3 class="text-sm font-bold text-gray-600 mb-2">📋 Podsumowanie przejazdu</h3>
+            <div id="contractSummary" class="text-sm space-y-1 text-gray-700"></div>
+          </div>
+
+          <!-- Section 2: Profiles -->
+          <div class="mb-4 p-4 bg-gray-50 rounded-xl">
+            <h3 class="text-sm font-bold text-gray-600 mb-2">👥 Profile uczestników</h3>
+            <div id="contractProfiles" class="text-sm space-y-1 text-gray-700"></div>
+          </div>
+
+          <!-- Section 3: Event registry -->
+          <div class="mb-4 p-4 bg-gray-50 rounded-xl">
+            <h3 class="text-sm font-bold text-gray-600 mb-2">📡 Rejestr zdarzeń</h3>
+            <div id="contractEvents" class="text-sm text-gray-700"></div>
+          </div>
+
+          <!-- Section 4: Cost breakdown -->
+          <div class="mb-4 p-4 bg-indigo-50 rounded-xl">
+            <h3 class="text-sm font-bold text-indigo-700 mb-2">💰 Kalkulacja kosztów</h3>
+            <div id="contractCosts" class="text-sm space-y-1 text-gray-700"></div>
+            <p class="text-lg font-bold text-indigo-600 mt-2">Razem: <span id="contractTotal">—</span> PLN</p>
+          </div>
+
+          <!-- Section 5: Approval -->
+          <div id="contractApproval" class="p-4 bg-gray-50 rounded-xl">
+            <h3 class="text-sm font-bold text-gray-600 mb-3">✍️ Zatwierdzenie</h3>
+            <div id="contractStatus" class="text-sm text-gray-500 mb-3"></div>
+            <div id="contractActions" class="space-y-2"></div>
+          </div>
+        </div>
+      </section>
+
+    </main>
+
+    <!-- TOAST -->
+    <div id="toast" class="toast hidden"></div>
+
+  </div>
+
+  <!-- SCRIPTS -->
+  <script src="js/data.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
