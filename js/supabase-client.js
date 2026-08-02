@@ -8,8 +8,8 @@
 
 // ===================== KONFIGURACJA =====================
 // Wartości placeholder — zastąp rzeczywistymi danymi projektu Supabase
-const SUPABASE_URL       = 'https://xxxxxxxxxxxx.supabase.co';
-const SUPABASE_ANON_KEY  = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...';
+const SUPABASE_URL       = 'https://oflomemrwwzukwwayfky.supabase.co';
+const SUPABASE_ANON_KEY  = 'TU_WKLEJ_SWOJ_KLUCZ_ANON';
 
 // ===================== INICJALIZACJA KLIENTA =====================
 let supabase = null;
@@ -20,7 +20,7 @@ function initSupabase() {
     console.warn('[PilotZaufania] Supabase CDN not loaded. Using localStorage fallback.');
     return false;
   }
-  if (!SUPABASE_URL || SUPABASE_URL.includes('xxxxxxxx')) {
+  if (!SUPABASE_URL || SUPABASE_URL.includes('xxxxxxxx') || !SUPABASE_ANON_KEY || SUPABASE_ANON_KEY.includes('TU_WKLEJ')) {
     console.warn('[PilotZaufania] Supabase not configured. Using localStorage fallback.');
     return false;
   }

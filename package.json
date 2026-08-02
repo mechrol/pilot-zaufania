@@ -1,0 +1,19 @@
+{
+  "name": "pilot-zaufania",
+  "version": "0.2.0",
+  "description": "Pilot Zaufania — profile pasażera, kierowcy i pojazdu z rozszerzalną architekturą IoT",
+  "type": "module",
+  "scripts": {
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "build": "tsc"
+  },
+  "dependencies": {
+    "zod": "^3.23.8"
+  },
+  "devDependencies": {
+    "typescript": "^5.6.3",
+    "vitest": "^2.1.4"
+  }
+}
