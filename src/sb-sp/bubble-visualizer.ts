@@ -52,8 +52,8 @@ export function generateBubble(
         )
       : ["unknown", 0];
 
-  const attributeName = topEntry[0] ?? "unknown";
-  const delta = topEntry[1] ?? 0;
+  const attributeName = String(topEntry[0] ?? "unknown");
+  const delta = Number(topEntry[1] ?? 0);
 
   // Znajdź definicję atrybutu
   const attrDef = MONITORED_ATTRIBUTES.find((a) => a.key === attributeName);

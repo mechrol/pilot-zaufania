@@ -51,7 +51,6 @@ export type {
   BubbleChartConfig,
   BubbleChartState,
   MonitoredAttribute,
-  ChartRenderData,
 } from "../types/bubble-chart.js";
 
 export {
