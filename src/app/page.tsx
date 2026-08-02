@@ -14,13 +14,47 @@ export default function LoginPage() {
     setError("");
     setLoading(true);
 
-    // Simulate auth — replace with real Supabase/API call
-    await new Promise((r) => setTimeout(r, 1200));
+    const controller = new AbortController();
+    const timeoutId = setTimeout(() => controller.abort(), 15000);
 
-    if (email === "demo@pilotzaufania.pl" && password === "demo123") {
+    try {
+      const res = await fetch("/api/auth/login", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email: email.trim(), password }),
+        signal: controller.signal,
+      });
+
+      clearTimeout(timeoutId);
+
+      const data = await res.json();
+
+      if (!res.ok) {
+        setError(data.error || "Nieprawidłowy email lub hasło.");
+        setLoading(false);
+        return;
+      }
+
+      localStorage.setItem("auth_token", data.token);
+      localStorage.setItem("auth_user", JSON.stringify(data.user));
+
       window.location.href = "/dashboard";
-    } else {
-      setError("Nieprawidłowy email lub hasło. Spróbuj ponownie.");
+    } catch (err: unknown) {
+      clearTimeout(timeoutId);
+
+      if (err instanceof DOMException && err.name === "AbortError") {
+        setError(
+          "Przekroczono czas oczekiwania. Serwer nie odpowiada — spróbuj ponownie później."
+        );
+      } else if (err instanceof TypeError && err.message === "Failed to fetch") {
+        setError(
+          "Nie można połączyć się z serwerem. Sprawdź połączenie internetowe."
+        );
+      } else {
+        setError(
+          "Nieoczekiwany błąd połączenia. Sprawdź internet i spróbuj ponownie."
+        );
+      }
       setLoading(false);
     }
   }
@@ -195,14 +229,6 @@ export default function LoginPage() {
               Zarejestruj się
             </a>
           </p>
-
-          {/* Demo hint */}
-          <div className="mt-6 rounded-xl border border-border bg-surface/50 px-4 py-3">
-            <p className="text-xs text-zinc-500">
-              <span className="font-medium text-zinc-400">Demo: </span>
-              demo@pilotzaufania.pl / demo123
-            </p>
-          </div>
         </div>
       </div>
     </div>
