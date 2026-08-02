@@ -2,7 +2,7 @@
 // Pilot Zaufania — Profil pojazdu
 // =============================================================================
 
-import type { BaseProfile } from "./base-profile.js";
+import type { BaseProfile } from "./base-profile";
 
 /** Profil pojazdu — rozszerza BaseProfile o dane techniczne */
 export interface VehicleProfile extends BaseProfile {

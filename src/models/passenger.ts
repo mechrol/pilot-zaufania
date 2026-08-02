@@ -9,9 +9,9 @@ import {
   passengerProfileSchema,
   createPassengerInputSchema,
   updatePassengerInputSchema,
-} from "../schemas/passenger.js";
-import type { CreatePassengerInput, UpdatePassengerInput } from "../schemas/passenger.js";
-import type { PassengerProfile } from "../types/passenger.js";
+} from "../schemas/passenger";
+import type { CreatePassengerInput, UpdatePassengerInput } from "../schemas/passenger";
+import type { PassengerProfile } from "../types/passenger";
 
 /** Generuje unikalne ID (UUID v4 — uproszczona wersja dla demo) */
 function generateId(): string {

@@ -6,13 +6,13 @@
 // Agent: Bubble Visualization Engineer
 // =============================================================================
 
-import type { BubbleVisualization, SB_SP_Event, RiskColor } from "../types/sb-sp.js";
-import type { BubbleChartState } from "../types/bubble-chart.js";
+import type { BubbleVisualization, SB_SP_Event, RiskColor } from "../types/sb-sp";
+import type { BubbleChartState } from "../types/bubble-chart";
 import {
   DEFAULT_BUBBLE_CHART_CONFIG,
   MONITORED_ATTRIBUTES,
   getRiskColor as getRiskColorFromThresholds,
-} from "../types/bubble-chart.js";
+} from "../types/bubble-chart";
 
 // ---------------------------------------------------------------------------
 // Factory

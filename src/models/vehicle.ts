@@ -6,9 +6,9 @@ import {
   vehicleProfileSchema,
   createVehicleInputSchema,
   updateVehicleInputSchema,
-} from "../schemas/vehicle.js";
-import type { CreateVehicleInput, UpdateVehicleInput } from "../schemas/vehicle.js";
-import type { VehicleProfile } from "../types/vehicle.js";
+} from "../schemas/vehicle";
+import type { CreateVehicleInput, UpdateVehicleInput } from "../schemas/vehicle";
+import type { VehicleProfile } from "../types/vehicle";
 
 function generateId(): string {
   return crypto.randomUUID?.() ?? `${Date.now()}-${Math.random().toString(36).slice(2, 11)}`;

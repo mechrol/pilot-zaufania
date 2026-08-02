@@ -13,7 +13,7 @@ import type {
   CameraData,
   RadarLidarData,
   EnvironmentalConditions,
-} from "../types/sb-sp.js";
+} from "../types/sb-sp";
 
 // ---------------------------------------------------------------------------
 // Factory

@@ -19,25 +19,25 @@ import type {
   SB_SP_Reflection,
   KnowledgeBase,
   WR_WP_Delta,
-} from "../types/sb-sp.js";
-import type { RoadType } from "../types/road-code.js";
-import type { BubbleChartState } from "../types/bubble-chart.js";
+} from "../types/sb-sp";
+import type { RoadType } from "../types/road-code";
+import type { BubbleChartState } from "../types/bubble-chart";
 import {
   extractCognitiveWR,
   computeCognitiveWP,
   computeCognitiveDelta,
-} from "./cognitive-track.js";
+} from "./cognitive-track";
 import {
   extractDecisionWR,
   computeDecisionWP,
   computeDecisionDelta,
-} from "./decision-track.js";
-import { generateComplianceReport } from "./road-code-checker.js";
-import { generateBubble } from "./bubble-visualizer.js";
+} from "./decision-track";
+import { generateComplianceReport } from "./road-code-checker";
+import { generateBubble } from "./bubble-visualizer";
 import {
   createKnowledgeBase,
   recordEvent,
-} from "./memory-engine.js";
+} from "./memory-engine";
 
 // ---------------------------------------------------------------------------
 // Parametry wejściowe

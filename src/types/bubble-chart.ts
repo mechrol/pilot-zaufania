@@ -9,7 +9,7 @@
 //   - przezroczystość = stabilność zachowania kierowcy
 // =============================================================================
 
-import type { BubbleVisualization, RiskColor } from "./sb-sp.js";
+import type { BubbleVisualization, RiskColor } from "./sb-sp";
 
 // ---------------------------------------------------------------------------
 // Konfiguracja wykresu

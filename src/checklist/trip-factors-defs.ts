@@ -7,7 +7,7 @@
 // i flagę krytyczności — krytyczne MUSZĄ być potwierdzone przed startem.
 // =============================================================================
 
-import type { ChecklistItem } from "./trip-factors.js";
+import type { ChecklistItem } from "./trip-factors";
 
 /**
  * Kompletna lista czynników podróży.

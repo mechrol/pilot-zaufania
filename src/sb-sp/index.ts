@@ -25,9 +25,9 @@ export type {
   KnowledgeBase,
   SafetyMetrics,
   BehaviorPattern,
-} from "../types/sb-sp.js";
+} from "../types/sb-sp";
 
-export { AGENT_ROLES } from "../types/sb-sp.js";
+export { AGENT_ROLES } from "../types/sb-sp";
 
 // Road code types
 export type {
@@ -35,7 +35,7 @@ export type {
   RoadSignDefinition,
   RoadType,
   CountryCode,
-} from "../types/road-code.js";
+} from "../types/road-code";
 
 export {
   SPEED_LIMITS_PL,
@@ -44,20 +44,20 @@ export {
   REACTION_TIME_NORMS,
   getSpeedLimits,
   getRoadSigns,
-} from "../types/road-code.js";
+} from "../types/road-code";
 
 // Bubble chart types
 export type {
   BubbleChartConfig,
   BubbleChartState,
   MonitoredAttribute,
-} from "../types/bubble-chart.js";
+} from "../types/bubble-chart";
 
 export {
   DEFAULT_BUBBLE_CHART_CONFIG,
   MONITORED_ATTRIBUTES,
   getRiskColor,
-} from "../types/bubble-chart.js";
+} from "../types/bubble-chart";
 
 // Schemas
 export {
@@ -80,7 +80,7 @@ export {
   safetyMetricsSchema,
   behaviorPatternSchema,
   knowledgeBaseSchema,
-} from "../schemas/sb-sp.js";
+} from "../schemas/sb-sp";
 
 // Cognitive track engine
 export {
@@ -94,7 +94,7 @@ export {
   extractCognitiveWR,
   computeCognitiveWP,
   computeCognitiveDelta,
-} from "./cognitive-track.js";
+} from "./cognitive-track";
 
 // Decision track engine
 export {
@@ -113,7 +113,7 @@ export {
   extractDecisionWR,
   computeDecisionWP,
   computeDecisionDelta,
-} from "./decision-track.js";
+} from "./decision-track";
 
 // Road code checker
 export {
@@ -122,12 +122,12 @@ export {
   checkReactionTimeCompliance,
   checkSignCompliance,
   generateComplianceReport,
-} from "./road-code-checker.js";
+} from "./road-code-checker";
 
 export type {
   SignComplianceResult,
   ComplianceReport,
-} from "./road-code-checker.js";
+} from "./road-code-checker";
 
 // Bubble visualizer
 export {
@@ -136,7 +136,7 @@ export {
   updateChartState,
   generateChartFromEvents,
   toRenderData,
-} from "./bubble-visualizer.js";
+} from "./bubble-visualizer";
 
 // Memory engine
 export {
@@ -144,13 +144,13 @@ export {
   recordEvent,
   exportKnowledgeBase,
   importKnowledgeBase,
-} from "./memory-engine.js";
+} from "./memory-engine";
 
 // SB/SP Engine
 export {
   createSB_SP_Context,
   processSB_SP_Event,
   processSB_SP_Batch,
-} from "./sb-sp-engine.js";
+} from "./sb-sp-engine";
 
-export type { SB_SP_Input, SB_SP_Context } from "./sb-sp-engine.js";
+export type { SB_SP_Input, SB_SP_Context } from "./sb-sp-engine";

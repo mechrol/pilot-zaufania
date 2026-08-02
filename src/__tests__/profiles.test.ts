@@ -6,18 +6,18 @@ import { describe, it, expect } from "vitest";
 import {
   createPassengerInputSchema,
   passengerProfileSchema,
-} from "../schemas/passenger.js";
+} from "../schemas/passenger";
 import {
   createDriverInputSchema,
-} from "../schemas/driver.js";
+} from "../schemas/driver";
 import {
   createVehicleInputSchema,
-} from "../schemas/vehicle.js";
-import { gpsDataSchema, gpsPointSchema } from "../schemas/gps.js";
-import { smartphoneMetadataSchema } from "../schemas/smartphone.js";
-import { tripChecklistSchema } from "../schemas/checklist.js";
-import { DEVICE_REGISTRY } from "../schemas/device-registry.js";
-import { TRIP_FACTORS, getCriticalFactors, createEmptyChecklist } from "../checklist/trip-factors-defs.js";
+} from "../schemas/vehicle";
+import { gpsDataSchema, gpsPointSchema } from "../schemas/gps";
+import { smartphoneMetadataSchema } from "../schemas/smartphone";
+import { tripChecklistSchema } from "../schemas/checklist";
+import { DEVICE_REGISTRY } from "../schemas/device-registry";
+import { TRIP_FACTORS, getCriticalFactors, createEmptyChecklist } from "../checklist/trip-factors-defs";
 
 // ======================== SCHEMATY BAZOWE ========================
 

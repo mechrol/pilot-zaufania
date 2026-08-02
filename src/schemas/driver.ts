@@ -3,7 +3,7 @@
 // =============================================================================
 
 import { z } from "zod";
-import { baseProfileSchema } from "./base-profile.js";
+import { baseProfileSchema } from "./base-profile";
 
 export const driverProfileSchema = baseProfileSchema.extend({
   fullName: z

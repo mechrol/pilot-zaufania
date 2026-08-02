@@ -5,9 +5,9 @@
 // — słownik na dane z przyszłych urządzeń pomiarowych (OBD-II, dashcam, radar…).
 // =============================================================================
 
-import type { GPSData } from "./gps.js";
-import type { SmartphoneMetadata } from "./smartphone.js";
-import type { TripChecklist } from "../checklist/trip-factors.js";
+import type { GPSData } from "./gps";
+import type { SmartphoneMetadata } from "./smartphone";
+import type { TripChecklist } from "../checklist/trip-factors";
 
 /** Dostępny poziom wyposażenia (tier sprzętowy) */
 export type EquipmentTier = "T0" | "T1" | "T2" | "T3" | "T4" | "T5";

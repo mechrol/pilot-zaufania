@@ -2,7 +2,7 @@
 // Pilot Zaufania — Profil kierowcy
 // =============================================================================
 
-import type { BaseProfile } from "./base-profile.js";
+import type { BaseProfile } from "./base-profile";
 
 /** Profil kierowcy — rozszerza BaseProfile o dane zawodowe i uprawnienia */
 export interface DriverProfile extends BaseProfile {

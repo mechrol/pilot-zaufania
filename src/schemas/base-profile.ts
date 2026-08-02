@@ -3,9 +3,9 @@
 // =============================================================================
 
 import { z } from "zod";
-import { gpsDataSchema } from "./gps.js";
-import { smartphoneMetadataSchema } from "./smartphone.js";
-import { tripChecklistSchema } from "./checklist.js";
+import { gpsDataSchema } from "./gps";
+import { smartphoneMetadataSchema } from "./smartphone";
+import { tripChecklistSchema } from "./checklist";
 
 export const equipmentTierSchema = z.enum([
   "T0",

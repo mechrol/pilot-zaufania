@@ -12,8 +12,8 @@
 // =============================================================================
 
 import { z } from "zod";
-import { DEVICE_REGISTRY } from "../schemas/device-registry.js";
-import type { DevicePlugin } from "../types/device.js";
+import { DEVICE_REGISTRY } from "../schemas/device-registry";
+import type { DevicePlugin } from "../types/device";
 
 // ---------------------------------------------------------------------------
 // 1. Typ danych urządzenia

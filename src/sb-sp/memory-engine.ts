@@ -13,7 +13,7 @@ import type {
   SB_SP_Event,
   SafetyMetrics,
   BehaviorPattern,
-} from "../types/sb-sp.js";
+} from "../types/sb-sp";
 
 // ---------------------------------------------------------------------------
 // Factory

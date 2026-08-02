@@ -6,7 +6,7 @@
 // =============================================================================
 
 import type { z } from "zod";
-import type { EquipmentTier } from "./base-profile.js";
+import type { EquipmentTier } from "./base-profile";
 
 /**
  * Definicja jednego rozszerzenia (pluginu) urządzenia pomiarowego.

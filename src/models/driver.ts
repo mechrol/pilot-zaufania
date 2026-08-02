@@ -6,9 +6,9 @@ import {
   driverProfileSchema,
   createDriverInputSchema,
   updateDriverInputSchema,
-} from "../schemas/driver.js";
-import type { CreateDriverInput, UpdateDriverInput } from "../schemas/driver.js";
-import type { DriverProfile } from "../types/driver.js";
+} from "../schemas/driver";
+import type { CreateDriverInput, UpdateDriverInput } from "../schemas/driver";
+import type { DriverProfile } from "../types/driver";
 
 function generateId(): string {
   return crypto.randomUUID?.() ?? `${Date.now()}-${Math.random().toString(36).slice(2, 11)}`;

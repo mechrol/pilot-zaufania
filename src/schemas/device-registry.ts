@@ -3,8 +3,8 @@
 // =============================================================================
 
 import { z } from "zod";
-import type { DevicePlugin, DeviceRegistry } from "../types/device.js";
-import { equipmentTierSchema } from "./base-profile.js";
+import type { DevicePlugin, DeviceRegistry } from "../types/device";
+import { equipmentTierSchema } from "./base-profile";
 
 /**
  * Implementacja rejestru pluginów urządzeń.
@@ -51,8 +51,8 @@ export const DEVICE_REGISTRY = createDeviceRegistry();
 // Smartfon jest urządzeniem bazowym, które rejestrujemy jako "plugin",
 // aby zachować spójność mechanizmu rozszerzeń.
 
-import { smartphoneMetadataSchema } from "./smartphone.js";
-import { gpsDataSchema } from "./gps.js";
+import { smartphoneMetadataSchema } from "./smartphone";
+import { gpsDataSchema } from "./gps";
 
 DEVICE_REGISTRY.register({
   id: "smartphone",

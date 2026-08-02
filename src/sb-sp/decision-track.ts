@@ -12,8 +12,8 @@ import type {
   WR_WP_Delta,
   SignReaction,
   Maneuver,
-} from "../types/sb-sp.js";
-import { REACTION_TIME_NORMS } from "../types/road-code.js";
+} from "../types/sb-sp";
+import { REACTION_TIME_NORMS } from "../types/road-code";
 
 // ---------------------------------------------------------------------------
 // Factory

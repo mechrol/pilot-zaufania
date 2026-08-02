@@ -2,7 +2,7 @@
 // Pilot Zaufania — Profil pasażera
 // =============================================================================
 
-import type { BaseProfile } from "./base-profile.js";
+import type { BaseProfile } from "./base-profile";
 
 /** Profil pasażera — rozszerza BaseProfile o dane osobowe */
 export interface PassengerProfile extends BaseProfile {

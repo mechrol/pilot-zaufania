@@ -7,14 +7,14 @@
 // Agent: Road Sign Interpreter
 // =============================================================================
 
-import type { ComplianceResult, DeviationLevel } from "../types/sb-sp.js";
-import type { RoadType } from "../types/road-code.js";
+import type { ComplianceResult, DeviationLevel } from "../types/sb-sp";
+import type { RoadType } from "../types/road-code";
 import {
   getSpeedLimits,
   SAFETY_DISTANCES,
   REACTION_TIME_NORMS,
   ROAD_SIGNS_PL,
-} from "../types/road-code.js";
+} from "../types/road-code";
 
 // ---------------------------------------------------------------------------
 // Analiza prędkości
