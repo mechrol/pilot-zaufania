@@ -141,6 +141,22 @@ export default function DashboardPage() {
           </Link>
 
           <Link
+            href="/dashboard/rejestracja"
+            className="block rounded-2xl border border-blue-500/20 bg-blue-500/5 p-8 hover:border-blue-500/30 transition-all cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 focus-visible:ring-offset-zinc-950"
+          >
+            <div className="flex items-center gap-2 mb-4">
+              <div className="text-2xl">🗺️</div>
+              <span className="text-xs font-semibold px-2 py-0.5 rounded-full border border-blue-500/30 bg-blue-500/10 text-blue-400">
+                NOWE
+              </span>
+            </div>
+            <h3 className="text-lg font-semibold mb-2">Rejestracja podróży</h3>
+            <p className="text-sm text-zinc-400">
+              Wybierz trasę na mapie, kierowcę i pojazd. System obliczy dystans, czas, koszt i parametry SB/SP.
+            </p>
+          </Link>
+
+          <Link
             href="/dashboard/checklista"
             className="block rounded-2xl border border-purple-500/20 bg-purple-500/5 p-8 hover:border-purple-500/30 transition-all cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-purple-500 focus-visible:ring-offset-2 focus-visible:ring-offset-zinc-950"
           >
