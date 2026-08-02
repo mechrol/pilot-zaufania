@@ -139,6 +139,22 @@ export default function DashboardPage() {
               Symulacja przejazdu z wykresem bąbelkowym zgodności i analizą toru poznawczo-decyzyjnego.
             </p>
           </Link>
+
+          <Link
+            href="/dashboard/checklista"
+            className="block rounded-2xl border border-purple-500/20 bg-purple-500/5 p-8 hover:border-purple-500/30 transition-all cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-purple-500 focus-visible:ring-offset-2 focus-visible:ring-offset-zinc-950"
+          >
+            <div className="flex items-center gap-2 mb-4">
+              <div className="text-2xl">📋</div>
+              <span className="text-xs font-semibold px-2 py-0.5 rounded-full border border-purple-500/30 bg-purple-500/10 text-purple-400">
+                NOWE
+              </span>
+            </div>
+            <h3 className="text-lg font-semibold mb-2">Checklista + Prognoza kolizji</h3>
+            <p className="text-sm text-zinc-400">
+              Wypełnij checklistę pasażera i zobacz prognozowane ryzyko kolizji na wykresie bąbelkowym SB/SP.
+            </p>
+          </Link>
         </div>
 
         <div className="mt-10 rounded-2xl border border-amber-500/20 bg-amber-500/5 p-8">
